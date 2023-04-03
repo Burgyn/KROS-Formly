@@ -1,0 +1,30 @@
+body {
+    margin: 0;
+  }
+  
+  .p-toolbar {
+    margin-bottom: 1rem;
+  }
+  
+  .p-toolbar-separator {
+    margin-left: 1rem;
+    margin-right: 1rem;
+  }
+  
+  .p-sidebar-hidden {
+    display: none;
+  }
+  
+  main {
+    padding: 1rem;
+  }
+
+  .p-toolbar-link {
+    color: inherit;
+    text-decoration: none;
+    margin-left: 1rem;
+  }
+  
+  .p-toolbar-link:hover {
+    text-decoration: underline;
+  }

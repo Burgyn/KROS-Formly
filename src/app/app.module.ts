@@ -6,20 +6,54 @@ import { AppComponent } from './app.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { FormlyPrimeNGModule } from '@ngx-formly/primeng';
 import { FormlyModule } from '@ngx-formly/core';
-
+import { ToolbarModule } from 'primeng/toolbar';
 import { ButtonModule } from 'primeng/button';
+import { SidebarModule } from 'primeng/sidebar';
+import { MenubarModule } from 'primeng/menubar';
+import { CheckboxModule } from 'primeng/checkbox';
+import { InvoicesEditComponent } from './invoices-edit/invoices-edit.component';
+import { InvoicesListComponent } from './invoices-list/invoices-list.component';
+import {FormlyDatepickerModule} from '@ngx-formly/primeng/datepicker';
+import { DropdownModule } from 'primeng/dropdown';
+import { CustomerFieldTypeComponent } from './customer-field-type/customer-field-type.component';
+import { DebugComponent } from './debug/debug.component';
+import { TabViewModule } from 'primeng/tabview';
+import { GridComponent } from './grid/grid.component';
+import { TableModule } from 'primeng/table';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    InvoicesEditComponent,
+    InvoicesListComponent,
+    CustomerFieldTypeComponent,
+    DebugComponent,
+    GridComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     ReactiveFormsModule,
-    FormlyModule.forRoot(),
+    FormlyModule.forRoot({
+      types: [
+        { name: 'customer', component: CustomerFieldTypeComponent },
+        { name: 'grid', component: GridComponent }
+      ],
+    }),
     FormlyPrimeNGModule,
-    ButtonModule
+    BrowserAnimationsModule,
+    ToolbarModule,
+    ButtonModule,
+    MenubarModule,
+    SidebarModule,
+    ButtonModule,
+    CheckboxModule,
+    FormlyDatepickerModule,
+    DropdownModule,
+    TabViewModule,
+    TableModule
   ],
   providers: [],
   bootstrap: [AppComponent]

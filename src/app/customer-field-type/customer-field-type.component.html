@@ -1,0 +1,7 @@
+<label>{{field.props.label}}</label>
+    
+<!-- <app-debug [field]="field" [model]="model"></app-debug> -->
+
+<div *ngFor="let step of field.fieldGroup;">
+    <formly-field [field]="step"></formly-field>
+</div>

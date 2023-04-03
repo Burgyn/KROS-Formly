@@ -1,4 +1,16 @@
-<form [formGroup]="form" (ngSubmit)="onSubmit(model)">
-  <formly-form [form]="form" [fields]="fields" [model]="model"></formly-form>  
-  <p-button label="Check" icon="pi pi-check"></p-button>
-</form>
+<p-toolbar>
+  <div class="p-toolbar-group-left">
+    <span class="p-toolbar-title">KROS</span>
+    <span class="p-toolbar-separator"></span>
+    <a routerLink="/invoices" class="p-toolbar-link">Zoznam faktúr</a>
+    <a routerLink="/invoices/1" class="p-toolbar-link">Faktúra</a>
+  </div>
+</p-toolbar>
+
+<div class="p-grid">
+  <div class="p-col">
+    <main>
+      <router-outlet></router-outlet>      
+    </main>
+  </div>
+</div>
