@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { FormlyFieldConfig } from '@ngx-formly/core';
+import { CustomerFieldTypeComponent } from '../customer-field-type/customer-field-type.component';
+import { DiscountComponent } from '../discount/discount.component';
 
 @Component({
   selector: 'app-invoices-edit',
@@ -36,7 +38,7 @@ export class InvoicesEditComponent {
       { description: 'Item 1', quantity: 1, price: 10.00 },
       { description: 'Item 2', quantity: 2, price: 5.00 },
       { description: 'Item 3', quantity: 3, price: 15.00 },
-      { description: 'Item 4', quantity: 4, price: 20.00}
+      { description: 'Item 4', quantity: 4, price: 20.00 }
     ],
     terms: 'No returns or refunds.',
     notes: 'Thank you for your business.',
@@ -49,7 +51,7 @@ export class InvoicesEditComponent {
     },
     discount: {
       allowed: true,
-      value: 10,
+      discount: 10,
       type: 'percent'
     }
   };
@@ -87,59 +89,20 @@ export class InvoicesEditComponent {
         placeholder: 'Dátum splatnosti',
       }
     },
-    {
-      key: 'customer',
-      type: 'customer',
-      props: {
-        label: 'Zákazník',
+    CustomerFieldTypeComponent.createField('customer', 'Zákazník'),
+    CustomerFieldTypeComponent.createField('supplier', 'Dodávateľ', false, [
+      {
+        key: 'name',
+        type: 'input',
       },
-      fieldGroup: [
-        {
-          key: 'name',
-          type: 'input',
-        },
-        {
-          key: 'address',
-          type: 'input',
-        },
-        {
-          key: 'email',
-          type: 'input',
-        },
-        {
-          key: 'city',
-          type: 'input',
-        },
-        {
-          key: 'state',
-          type: 'input',
-        },
-        {
-          key: 'zip',
-          type: 'input',
-        },
-      ],
-    },
-    {
-      key: 'supplier',
-      type: 'customer',
-      props: {
-        label: 'Dodávateľ'
-      },
-      fieldGroup: [
-        {
-          key: 'name',
-          type: 'input',
-        },
-        {
-          key: 'address',
-          type: 'input',
-          props: {
-            disabled: true,
-          }
+      {
+        key: 'address',
+        type: 'input',
+        props: {
+          disabled: true,
         }
-      ]
-    },
+      }
+    ]),
     {
       key: 'items',
       type: 'grid',
@@ -224,14 +187,7 @@ export class InvoicesEditComponent {
         ],
       }
     },
-    {
-      key: 'discount',
-      type: 'input',
-      props: {
-        label: 'Zľava',
-        placeholder: 'Zľava',
-      }
-    },
+    DiscountComponent.createField(),
   ];
 
   onSubmit(model: any) {

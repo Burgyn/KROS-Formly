@@ -21,6 +21,8 @@ import { TabViewModule } from 'primeng/tabview';
 import { GridComponent } from './grid/grid.component';
 import { TableModule } from 'primeng/table';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { DiscountComponent } from './discount/discount.component';
+import { DiscountValueComponent } from './discount-value/discount-value.component';
 
 
 @NgModule({
@@ -30,7 +32,9 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     InvoicesListComponent,
     CustomerFieldTypeComponent,
     DebugComponent,
-    GridComponent
+    GridComponent,
+    DiscountComponent,
+    DiscountValueComponent
   ],
   imports: [
     BrowserModule,
@@ -39,7 +43,9 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     FormlyModule.forRoot({
       types: [
         { name: 'customer', component: CustomerFieldTypeComponent },
-        { name: 'grid', component: GridComponent }
+        { name: 'grid', component: GridComponent },
+        { name: 'discount', component: DiscountComponent },
+        { name: 'discountValue', component: DiscountValueComponent }
       ],
     }),
     FormlyPrimeNGModule,

@@ -1,0 +1,7 @@
+<!-- <app-debug [field]="field" [model]="model"></app-debug> -->
+
+<label>{{field.props!.label}}</label>
+<div class="display-flex">
+    <formly-field pInputText [field]="typeField()"></formly-field>
+    <formly-field pInputText [field]="priceField()"></formly-field>
+</div>
