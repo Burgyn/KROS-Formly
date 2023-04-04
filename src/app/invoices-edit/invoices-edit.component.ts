@@ -92,7 +92,7 @@ export class InvoicesEditComponent {
         label: 'Položky',
         placeholder: 'Položky',
         header: 'Položky',
-        allowColumnResizing: true        
+        allowColumnResizing: true
       }
     },
     {
