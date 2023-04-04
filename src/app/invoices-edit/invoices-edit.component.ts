@@ -4,6 +4,7 @@ import { FormlyFieldConfig } from '@ngx-formly/core';
 import { CustomerFieldTypeComponent } from '../customer-field-type/customer-field-type.component';
 import { DiscountComponent } from '../discount/discount.component';
 import { DxGroupWrapperComponent } from '../dx-group-wrapper/dx-group-wrapper.component';
+import { DataService } from '../data.service';
 
 @Component({
   selector: 'app-invoices-edit',
@@ -11,6 +12,9 @@ import { DxGroupWrapperComponent } from '../dx-group-wrapper/dx-group-wrapper.co
   styleUrls: ['./invoices-edit.component.scss']
 })
 export class InvoicesEditComponent {
+
+  constructor(private dataService: DataService) { }
+
   form = new FormGroup({});
   model = {
     id: 1,
@@ -182,18 +186,15 @@ export class InvoicesEditComponent {
           props: {
             label: 'Mena',
             placeholder: 'Mena',
-            options: [
-              { value: 'EUR', label: 'Euro (EUR)' },
-              { value: 'USD', label: 'Americký dolár (USD)' },
-              { value: 'GBP', label: 'Libra (GBP)' },
-              { value: 'CZK', label: 'Česká koruna (CZK)' },
-            ],
+            displayExpr: 'name',
+            valueExpr: 'code',
+            searchEnabled: true,
+            options: this.dataService.getCurrencies(),
           }
         },
         {
           key: 'bankAccount',
           type: 'select',
-          // wrappers: [DxGroupWrapperComponent],
           props: {
             label: 'Bankový účet',
             placeholder: 'Bankový účet',
@@ -242,7 +243,7 @@ export class InvoicesEditComponent {
 
 
   //ToDo:
-  // - Dvojstlpcovy layout
+  // - Dvojstlpcovy layout ✔️
   // - ked vyberiem menu tak sa vyfiltruje iban podla meny
   // - cobo partnera
   //   - ked vyberiem partnera tak sa vyplnia jeho udaje
