@@ -92,20 +92,7 @@ export class InvoicesEditComponent {
         label: 'Položky',
         placeholder: 'Položky',
         header: 'Položky',
-        columns: [
-          {
-            field: 'description',
-            header: 'Popis',
-          },
-          {
-            field: 'quantity',
-            header: 'Množstvo',
-          },
-          {
-            field: 'price',
-            header: 'Cena',
-          },
-        ]
+        allowColumnResizing: true        
       }
     },
     {

@@ -2,8 +2,10 @@ import { Component } from '@angular/core';
 import { FieldArrayType, FormlyFieldConfig, FormlyFieldProps } from '@ngx-formly/core';
 
 interface DxGridProps extends FormlyFieldProps {
-  columns: any[];
-  header: string | undefined;
+  allowColumnResizing: boolean;
+  showBorders: boolean;
+  columnMinWidth: number;
+  columnAutoWidth: boolean;
 }
 
 export interface DxGridFieldConfig extends FormlyFieldConfig<DxGridProps> {
@@ -17,7 +19,11 @@ export interface DxGridFieldConfig extends FormlyFieldConfig<DxGridProps> {
       id="gridContainer"
       [dataSource]="model"
       keyExpr="code"
-      [showBorders]="true"
+      [showBorders]="to.showBorders"
+      [allowColumnResizing]="to.allowColumnResizing"
+      [columnMinWidth]="to.columnMinWidth"
+      [columnAutoWidth]="to.columnAutoWidth"
+      [formlyAttributes]="field"
     ></dx-data-grid>
   `,
   styleUrls: ['./dx-grid.component.scss']
