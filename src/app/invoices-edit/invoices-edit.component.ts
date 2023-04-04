@@ -98,20 +98,30 @@ export class InvoicesEditComponent {
         },
       ]
     },
-    CustomerFieldTypeComponent.createField('customer', 'Zákazník'),
-    CustomerFieldTypeComponent.createField('supplier', 'Dodávateľ', false, [
-      {
-        key: 'name',
-        type: 'input',
-      },
-      {
-        key: 'address',
-        type: 'input',
-        props: {
-          disabled: true,
-        }
-      }
-    ]),
+    {
+      fieldGroupClassName: 'display-flex',
+      fieldGroup: [
+        CustomerFieldTypeComponent.createField('customer', 'Zákazník'),
+        CustomerFieldTypeComponent.createField('supplier', 'Dodávateľ', false, [
+          {
+            key: 'name',
+            type: 'input',
+            props: {
+              disabled: true,
+              label: 'Názov',
+            }
+          },
+          {
+            key: 'address',
+            type: 'input',
+            props: {
+              disabled: true,
+              label: 'Adresa',
+            }
+          }
+        ]),
+      ]
+    },
     {
       key: 'items',
       type: 'grid',
@@ -159,7 +169,7 @@ export class InvoicesEditComponent {
           }
         }
       ]
-    },  
+    },
     {
       props: {
         label: 'Platba',
@@ -196,7 +206,7 @@ export class InvoicesEditComponent {
           }
         }
       ]
-    },    
+    },
     {
       wrappers: ['dx-group'],
       props: {
@@ -236,6 +246,7 @@ export class InvoicesEditComponent {
   // - ked vyberiem menu tak sa vyfiltruje iban podla meny
   // - cobo partnera
   //   - ked vyberiem partnera tak sa vyplnia jeho udaje
+  // - Discount
 
 
 

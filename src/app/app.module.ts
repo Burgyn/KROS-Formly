@@ -28,6 +28,7 @@ import { DevExtremeModule } from 'devextreme-angular';
 import { DxFormFieldComponent } from './dx-form-field/dx-form-field.component';
 import { DxGroupWrapperComponent } from './dx-group-wrapper/dx-group-wrapper.component';
 import { DxSelectComponent } from './dx-select/dx-select.component';
+import { DxColumnLayoutWrapperComponent } from './dx-column-layout-wrapper/dx-column-layout-wrapper.component';
 
 
 @NgModule({
@@ -43,7 +44,8 @@ import { DxSelectComponent } from './dx-select/dx-select.component';
     DxInputComponent,
     DxFormFieldComponent,
     DxGroupWrapperComponent,
-    DxSelectComponent
+    DxSelectComponent,
+    DxColumnLayoutWrapperComponent
   ],
   imports: [
     BrowserModule,

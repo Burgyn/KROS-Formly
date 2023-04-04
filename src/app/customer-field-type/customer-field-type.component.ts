@@ -17,11 +17,12 @@ export class CustomerFieldTypeComponent extends FieldType<FieldTypeConfig> imple
       key: key,
       type: 'customer',
       wrappers: ['dx-group'],
+      className: 'flex-1',
       props: {
         label: label,
         placeholder: label,
         required: required,
-      },
+      },    
       fieldGroup: [
         {
           key: 'id',
