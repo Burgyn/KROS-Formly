@@ -5,6 +5,7 @@ import { CustomerFieldTypeComponent } from '../customer-field-type/customer-fiel
 import { DiscountComponent } from '../discount/discount.component';
 import { DxGroupWrapperComponent } from '../dx-group-wrapper/dx-group-wrapper.component';
 import { DataService } from '../data.service';
+import { map, of, startWith, switchMap, tap } from 'rxjs';
 
 @Component({
   selector: 'app-invoices-edit',
@@ -16,50 +17,7 @@ export class InvoicesEditComponent {
   constructor(private dataService: DataService) { }
 
   form = new FormGroup({});
-  model = {
-    id: 1,
-    number: 'OF 20230001',
-    date: '2021-01-01',
-    dueDate: '2021-01-31',
-    customer: {
-      id: 1,
-      name: 'John Doe',
-      address: '123 Main St.',
-      email: 'john.doe@gmail.com',
-      city: 'New York',
-      state: 'NY',
-      zip: '10001'
-    },
-    supplier: {
-      id: 2,
-      name: 'Acme Inc.',
-      address: '123 Main St.',
-      email: 'acme@someone.com',
-      city: 'New York',
-      state: 'NY',
-      zip: '10001'
-    },
-    items: [
-      { description: 'Item 1', quantity: 1, price: 10.00 },
-      { description: 'Item 2', quantity: 2, price: 5.00 },
-      { description: 'Item 3', quantity: 3, price: 15.00 },
-      { description: 'Item 4', quantity: 4, price: 20.00 }
-    ],
-    terms: 'No returns or refunds.',
-    notes: 'Thank you for your business.',
-    total: 25.00,
-    paid: false,
-    currency: 'USD',
-    bankAccount: {
-      name: 'Bank of America',
-      iban: 'US1234567890',
-    },
-    discount: {
-      allowed: true,
-      discount: 10,
-      type: 'percent'
-    }
-  };
+  model = this.dataService.getInvoice(1);
   fields: FormlyFieldConfig[] = [
     {
       key: 'id',
@@ -128,7 +86,7 @@ export class InvoicesEditComponent {
     },
     {
       key: 'items',
-      type: 'grid',
+      type: 'dx-grid',
       wrappers: ['dx-group'],
       props: {
         label: 'Položky',
@@ -198,18 +156,26 @@ export class InvoicesEditComponent {
           props: {
             label: 'Bankový účet',
             placeholder: 'Bankový účet',
-            options: [
-              { value: 'US1234567890', label: 'Bank of America (US1234567890)' },
-              { value: 'US9876543210', label: 'Bank of America (US9876543210)' },
-              { value: 'CZ1234567890', label: 'Česká spořitelna (CZ1234567890)' },
-              { value: 'CZ9876543210', label: 'Česká spořitelna (CZ9876543210)' },
-            ],
+            displayExpr: 'name',
+            valueExpr: 'code',
+            options: [],
+          },
+          hooks: {
+            onInit: (field) => {
+              if (field.props) {
+                field.props.options = field.form?.get('currency')?.valueChanges.pipe(
+                  switchMap((currency) => {
+                    return this.dataService.getBankAccountByCurrency(currency);
+                  })
+                );
+              }
+            },
           }
         }
       ]
     },
     {
-      wrappers: ['dx-group'],
+      wrappers: ['dx-group'],      
       props: {
         label: 'Cena',
       },
@@ -231,7 +197,12 @@ export class InvoicesEditComponent {
             label: 'Zaplatené',
           }
         },
-        DiscountComponent.createField()
+        {
+          hideExpression:  model =>  model.total < 50,
+          fieldGroup: [
+            DiscountComponent.createField(),
+          ]
+        }
       ]
     }
   ];
@@ -244,14 +215,16 @@ export class InvoicesEditComponent {
 
   //ToDo:
   // - Dvojstlpcovy layout ✔️
-  // - ked vyberiem menu tak sa vyfiltruje iban podla meny
+  // - ked vyberiem menu tak sa vyfiltruje iban podla meny ✔️
   // - cobo partnera
   //   - ked vyberiem partnera tak sa vyplnia jeho udaje
+  // - jednoduche skrivanie / disablovanie ✔️
   // - Discount
-
-
-
-
+  // - preskumat tie ich extensions
+  // - validacie
+  // - zoznam poloziek ako grid
+  //   - pridat polozku / vymazat polozku
+  // - trochu to refaktorovat a presunut to damostatnych tried
 
 
   // -----------------------------

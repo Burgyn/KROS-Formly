@@ -13,7 +13,7 @@ import { MenubarModule } from 'primeng/menubar';
 import { CheckboxModule } from 'primeng/checkbox';
 import { InvoicesEditComponent } from './invoices-edit/invoices-edit.component';
 import { InvoicesListComponent } from './invoices-list/invoices-list.component';
-import {FormlyDatepickerModule} from '@ngx-formly/primeng/datepicker';
+import { FormlyDatepickerModule } from '@ngx-formly/primeng/datepicker';
 import { DropdownModule } from 'primeng/dropdown';
 import { CustomerFieldTypeComponent } from './customer-field-type/customer-field-type.component';
 import { DebugComponent } from './debug/debug.component';
@@ -29,6 +29,7 @@ import { DxFormFieldComponent } from './dx-form-field/dx-form-field.component';
 import { DxGroupWrapperComponent } from './dx-group-wrapper/dx-group-wrapper.component';
 import { DxSelectComponent } from './dx-select/dx-select.component';
 import { DxColumnLayoutWrapperComponent } from './dx-column-layout-wrapper/dx-column-layout-wrapper.component';
+import { DxGridComponent } from './dx-grid/dx-grid.component';
 
 
 @NgModule({
@@ -45,7 +46,8 @@ import { DxColumnLayoutWrapperComponent } from './dx-column-layout-wrapper/dx-co
     DxFormFieldComponent,
     DxGroupWrapperComponent,
     DxSelectComponent,
-    DxColumnLayoutWrapperComponent
+    DxColumnLayoutWrapperComponent,
+    DxGridComponent
   ],
   imports: [
     BrowserModule,
@@ -72,6 +74,7 @@ import { DxColumnLayoutWrapperComponent } from './dx-column-layout-wrapper/dx-co
             },
           },
         },
+        { name: 'dx-grid', component: DxGridComponent },
       ],
     }),
     FormlyPrimeNGModule,

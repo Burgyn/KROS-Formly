@@ -2,6 +2,7 @@ import { ChangeDetectionStrategy, Component, Type } from '@angular/core';
 import { FieldType, FieldTypeConfig, FormlyFieldConfig, FormlyFieldProps } from '@ngx-formly/core';
 import { FormlyFieldSelectProps } from '@ngx-formly/core/select';
 import { FormlyFieldSelect } from '@ngx-formly/primeng/select';
+import { Observable } from 'rxjs';
 
 interface SelectProps extends FormlyFieldProps, FormlyFieldSelectProps {
   displayExpr: string;
@@ -16,7 +17,7 @@ export interface FormlySelectFieldConfig extends FormlyFieldConfig<SelectProps> 
 @Component({
   selector: 'app-dx-select',
   template: `
-    <dx-select-box [items]="items()" 
+    <dx-select-box [items]="items() | async" 
       [formControl]="formControl"
       [formlyAttributes]="field"
       [searchEnabled]="props.searchEnabled || false"
@@ -29,7 +30,7 @@ export interface FormlySelectFieldConfig extends FormlyFieldConfig<SelectProps> 
 })
 export class DxSelectComponent extends FieldType<FieldTypeConfig<SelectProps>> {
 
-  items(): any[] {
-    return this.props.options as any[];
+  items(): Observable<any> {
+    return this.props.options as Observable<any>;
   }
 }
