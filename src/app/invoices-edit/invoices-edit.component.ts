@@ -3,6 +3,7 @@ import { FormGroup } from '@angular/forms';
 import { FormlyFieldConfig } from '@ngx-formly/core';
 import { CustomerFieldTypeComponent } from '../customer-field-type/customer-field-type.component';
 import { DiscountComponent } from '../discount/discount.component';
+import { DxGroupWrapperComponent } from '../dx-group-wrapper/dx-group-wrapper.component';
 
 @Component({
   selector: 'app-invoices-edit',
@@ -62,32 +63,40 @@ export class InvoicesEditComponent {
       template: '<h2>Faktura 1</h2>',
     },
     {
-      key: 'number',
-      type: 'input',
       props: {
-        label: 'Čislo faktúry',
-        placeholder: 'Čislo faktúry',
-        required: true,
+        label: 'Základné informácie',
       },
-    },
-    {
-      key: 'date',
-      type: 'input',
-      props: {
-        type: 'date',
-        label: 'Dátum',
-        placeholder: 'Dátum vystavenia',
-        required: true,
-      }
-    },
-    {
-      key: 'dueDate',
-      type: 'input',
-      props: {
-        type: 'date',
-        label: 'Dátum splatnosti',
-        placeholder: 'Dátum splatnosti',
-      }
+      wrappers: ['dx-group'],
+      fieldGroup: [
+        {
+          key: 'number',
+          type: 'input',
+          props: {
+            label: 'Čislo faktúry',
+            placeholder: 'Čislo faktúry',
+            required: true,
+          },
+        },
+        {
+          key: 'date',
+          type: 'input',
+          props: {
+            type: 'date',
+            label: 'Dátum',
+            placeholder: 'Dátum vystavenia',
+            required: true,
+          }
+        },
+        {
+          key: 'dueDate',
+          type: 'input',
+          props: {
+            type: 'date',
+            label: 'Dátum splatnosti',
+            placeholder: 'Dátum splatnosti',
+          }
+        },
+      ]
     },
     CustomerFieldTypeComponent.createField('customer', 'Zákazník'),
     CustomerFieldTypeComponent.createField('supplier', 'Dodávateľ', false, [
@@ -106,6 +115,7 @@ export class InvoicesEditComponent {
     {
       key: 'items',
       type: 'grid',
+      wrappers: ['dx-group'],
       props: {
         label: 'Položky',
         placeholder: 'Položky',
@@ -127,74 +137,112 @@ export class InvoicesEditComponent {
       }
     },
     {
-      key: 'terms',
-      type: 'input',
+      wrappers: ['dx-group'],
       props: {
-        label: 'Podmienky',
-        placeholder: 'Podmienky',
-      }
-    },
+        label: 'Texty',
+      },
+      fieldGroup: [
+        {
+          key: 'terms',
+          type: 'input',
+          props: {
+            label: 'Podmienky',
+            placeholder: 'Podmienky',
+          }
+        },
+        {
+          key: 'notes',
+          type: 'input',
+          props: {
+            label: 'Poznámka',
+            placeholder: 'Poznámka',
+          }
+        }
+      ]
+    },  
     {
-      key: 'notes',
-      type: 'input',
       props: {
-        label: 'Poznámka',
-        placeholder: 'Poznámka',
-      }
-    },
+        label: 'Platba',
+      },
+      wrappers: ['dx-group'],
+      fieldGroup: [
+        {
+          key: 'currency',
+          type: 'select',
+          props: {
+            label: 'Mena',
+            placeholder: 'Mena',
+            options: [
+              { value: 'EUR', label: 'Euro (EUR)' },
+              { value: 'USD', label: 'Americký dolár (USD)' },
+              { value: 'GBP', label: 'Libra (GBP)' },
+              { value: 'CZK', label: 'Česká koruna (CZK)' },
+            ],
+          }
+        },
+        {
+          key: 'bankAccount',
+          type: 'select',
+          // wrappers: [DxGroupWrapperComponent],
+          props: {
+            label: 'Bankový účet',
+            placeholder: 'Bankový účet',
+            options: [
+              { value: 'US1234567890', label: 'Bank of America (US1234567890)' },
+              { value: 'US9876543210', label: 'Bank of America (US9876543210)' },
+              { value: 'CZ1234567890', label: 'Česká spořitelna (CZ1234567890)' },
+              { value: 'CZ9876543210', label: 'Česká spořitelna (CZ9876543210)' },
+            ],
+          }
+        }
+      ]
+    },    
     {
-      key: 'total',
-      type: 'input',
+      wrappers: ['dx-group'],
       props: {
-        // toto chcem readonly (respektive len text)
-        type: 'number',
-        label: 'Celkom',
-        placeholder: 'Celkom',
-      }
-    },
-    {
-      key: 'paid',
-      type: 'checkbox',
-      props: {
-        label: 'Zaplatené',
-      }
-    },
-    {
-      key: 'currency',
-      type: 'select',
-      props: {
-        label: 'Mena',
-        placeholder: 'Mena',
-        options: [
-          { value: 'EUR', label: 'Euro (EUR)' },
-          { value: 'USD', label: 'Americký dolár (USD)' },
-          { value: 'GBP', label: 'Libra (GBP)' },
-          { value: 'CZK', label: 'Česká koruna (CZK)' },
-        ],
-      }
-    },
-    {
-      key: 'bankAccount',
-      type: 'select',
-      props: {
-        label: 'Bankový účet',
-        placeholder: 'Bankový účet',
-        options: [
-          { value: 'US1234567890', label: 'Bank of America (US1234567890)' },
-          { value: 'US9876543210', label: 'Bank of America (US9876543210)' },
-          { value: 'CZ1234567890', label: 'Česká spořitelna (CZ1234567890)' },
-          { value: 'CZ9876543210', label: 'Česká spořitelna (CZ9876543210)' },
-        ],
-      }
-    },
-    DiscountComponent.createField(),
+        label: 'Cena',
+      },
+      fieldGroup: [
+        {
+          key: 'total',
+          type: 'input',
+          props: {
+            // toto chcem readonly (respektive len text)
+            type: 'number',
+            label: 'Celkom',
+            placeholder: 'Celkom',
+          }
+        },
+        {
+          key: 'paid',
+          type: 'checkbox',
+          props: {
+            label: 'Zaplatené',
+          }
+        },
+        DiscountComponent.createField()
+      ]
+    }
   ];
 
   onSubmit(model: any) {
     console.log(model);
   }
 
+
+
   //ToDo:
+  // - Dvojstlpcovy layout
+  // - ked vyberiem menu tak sa vyfiltruje iban podla meny
+  // - cobo partnera
+  //   - ked vyberiem partnera tak sa vyplnia jeho udaje
+
+
+
+
+
+
+  // -----------------------------
   // - pridat dalsie polozky
   //   - meny z jednoycheho comba
   //   - IBAN - zo specialneho comba

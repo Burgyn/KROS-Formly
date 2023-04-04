@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FieldArrayType, FieldType, FieldTypeConfig, FormlyFieldConfig } from '@ngx-formly/core';
+import { DxGroupWrapperComponent } from '../dx-group-wrapper/dx-group-wrapper.component';
 
 @Component({
   templateUrl: './customer-field-type.component.html',
@@ -15,6 +16,7 @@ export class CustomerFieldTypeComponent extends FieldType<FieldTypeConfig> imple
     return {
       key: key,
       type: 'customer',
+      wrappers: ['dx-group'],
       props: {
         label: label,
         placeholder: label,

@@ -23,6 +23,11 @@ import { TableModule } from 'primeng/table';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { DiscountComponent } from './discount/discount.component';
 import { DiscountValueComponent } from './discount-value/discount-value.component';
+import { DxInputComponent } from './dx-input/dx-input.component';
+import { DevExtremeModule } from 'devextreme-angular';
+import { DxFormFieldComponent } from './dx-form-field/dx-form-field.component';
+import { DxGroupWrapperComponent } from './dx-group-wrapper/dx-group-wrapper.component';
+import { DxSelectComponent } from './dx-select/dx-select.component';
 
 
 @NgModule({
@@ -34,18 +39,37 @@ import { DiscountValueComponent } from './discount-value/discount-value.componen
     DebugComponent,
     GridComponent,
     DiscountComponent,
-    DiscountValueComponent
+    DiscountValueComponent,
+    DxInputComponent,
+    DxFormFieldComponent,
+    DxGroupWrapperComponent,
+    DxSelectComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     ReactiveFormsModule,
     FormlyModule.forRoot({
+      wrappers: [
+        { name: 'form-field', component: DxFormFieldComponent },
+        { name: 'dx-group', component: DxGroupWrapperComponent },
+      ],
       types: [
         { name: 'customer', component: CustomerFieldTypeComponent },
         { name: 'grid', component: GridComponent },
         { name: 'discount', component: DiscountComponent },
-        { name: 'discountValue', component: DiscountValueComponent }
+        { name: 'discountValue', component: DiscountValueComponent },
+        { name: 'input', component: DxInputComponent, wrappers: ['form-field'] },
+        { name: 'select', component: DxSelectComponent, wrappers: ['form-field'] },
+        {
+          name: 'number',
+          extends: 'input',
+          defaultOptions: {
+            props: {
+              type: 'number',
+            },
+          },
+        },
       ],
     }),
     FormlyPrimeNGModule,
@@ -59,7 +83,8 @@ import { DiscountValueComponent } from './discount-value/discount-value.componen
     FormlyDatepickerModule,
     DropdownModule,
     TabViewModule,
-    TableModule
+    TableModule,
+    DevExtremeModule
   ],
   providers: [],
   bootstrap: [AppComponent]
