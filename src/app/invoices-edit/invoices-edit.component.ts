@@ -137,6 +137,7 @@ export class InvoicesEditComponent {
             valueExpr: 'code',
             searchEnabled: true,
             options: this.dataService.getCurrencies(),
+            dependOn: 'bankAccount',
           }
         },
         {

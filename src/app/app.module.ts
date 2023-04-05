@@ -34,6 +34,7 @@ import { FormlyPresetModule } from '@ngx-formly/core/preset';
 import { FormlySelectModule } from '@ngx-formly/core/select';
 import { registerTypeOfPaymentPreset, TYPE_OF_PAYMENTS } from './typeofpayment.preset';
 import {defaultPlaceholderExtension} from './defaultPlaceholderExtension';
+import { DependentOptionsExtension } from './DependentOptionsExtension';
 
 
 @NgModule({
@@ -121,6 +122,10 @@ import {defaultPlaceholderExtension} from './defaultPlaceholderExtension';
         {
           name: 'default-placeholder',
           extension: defaultPlaceholderExtension
+        },
+        {
+          name: 'dependsOn',
+          extension: DependentOptionsExtension
         }
       ]
     }),

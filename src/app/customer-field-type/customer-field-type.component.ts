@@ -37,12 +37,13 @@ export class CustomerFieldTypeComponent extends FieldType<CustomerFieldConfig> i
             if ($event.selectedItem) {
               //ToDO: keby som sa pohral so strukturou fieldov tak by som to mohol patchnut jednym prikazom
               //field.form?.patchValue($event.selectedItem);
-              field.form?.get('name')?.patchValue($event.selectedItem.name);
-              field.form?.get('address')?.patchValue($event.selectedItem.address);
-              field.form?.get('city')?.patchValue($event.selectedItem.city);
-              field.form?.get('zip')?.patchValue($event.selectedItem.zip);
-              field.form?.get('email')?.patchValue($event.selectedItem.email);
-              field.form?.get('state')?.patchValue($event.selectedItem.state);
+              let form = field.form;
+              form?.get('name')?.patchValue($event.selectedItem.name);
+              form?.get('address')?.patchValue($event.selectedItem.address);
+              form?.get('city')?.patchValue($event.selectedItem.city);
+              form?.get('zip')?.patchValue($event.selectedItem.zip);
+              form?.get('email')?.patchValue($event.selectedItem.email);
+              form?.get('state')?.patchValue($event.selectedItem.state);
 
               // ToDo: Mal by som to byt schopny spravit aj takto:
               // miesto toho aby som pocuval na zmenu, viem to spraviť aj deklaratívne na úrovni fieldu
