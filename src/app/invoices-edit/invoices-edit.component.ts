@@ -10,11 +10,10 @@ import { map, of, startWith, switchMap, tap } from 'rxjs';
 @Component({
   selector: 'app-invoices-edit',
   templateUrl: './invoices-edit.component.html',
-  styleUrls: ['./invoices-edit.component.scss']
+  styleUrls: ['./invoices-edit.component.scss'],
 })
 export class InvoicesEditComponent {
-
-  constructor(private dataService: DataService) { }
+  constructor(private dataService: DataService) {}
 
   form = new FormGroup({});
   model = this.dataService.getInvoice(1);
@@ -47,7 +46,7 @@ export class InvoicesEditComponent {
             label: 'Dátum',
             placeholder: 'Dátum vystavenia',
             required: true,
-          }
+          },
         },
         {
           key: 'dueDate',
@@ -56,9 +55,9 @@ export class InvoicesEditComponent {
             type: 'date',
             label: 'Dátum splatnosti',
             placeholder: 'Dátum splatnosti',
-          }
+          },
         },
-      ]
+      ],
     },
     {
       fieldGroupClassName: 'display-flex',
@@ -89,8 +88,48 @@ export class InvoicesEditComponent {
         label: 'Položky',
         placeholder: 'Položky',
         header: 'Položky',
-        allowColumnResizing: true
-      }
+        allowColumnResizing: true,
+        keyExpr: 'code',
+        columns: [
+          {
+            dataField: 'code',
+            caption: 'Kód',
+            width: 70,
+          },
+          {
+            dataField: 'description',
+            caption: 'Názov',
+            width: 300,
+          },
+          {
+            dataField: 'quantity',
+            caption: 'Množstvo',
+            width: 80,
+          },
+          {
+            dataField: 'price',
+            caption: 'Cena',
+            width: 100,
+            format: ' ##0.00',
+          },
+          {
+            dataField: 'tax',
+            caption: 'DPH',
+            width: 100,
+          },
+          {
+            dataField: 'total',
+            caption: 'Celkom',
+            width: 100,
+            format: ' ##0.00',
+          },
+          {
+            dataField: 'discount',
+            caption: 'Zľava',
+            width: 90,
+          },
+        ],
+      },
     },
     {
       wrappers: ['dx-group'],
@@ -104,7 +143,7 @@ export class InvoicesEditComponent {
           props: {
             label: 'Podmienky',
             placeholder: 'Podmienky',
-          }
+          },
         },
         {
           key: 'notes',
@@ -137,8 +176,7 @@ export class InvoicesEditComponent {
             valueExpr: 'code',
             searchEnabled: true,
             options: this.dataService.getCurrencies(),
-            dependOn: 'bankAccount',
-          }
+          },
         },
         {
           key: 'bankAccount',
@@ -153,11 +191,15 @@ export class InvoicesEditComponent {
           hooks: {
             onInit: (field) => {
               if (field.props) {
-                field.props.options = field.form?.get('currency')?.valueChanges.pipe(
-                  switchMap((currency) => {
-                    return this.dataService.getBankAccountByCurrency(currency);
-                  })
-                );
+                field.props.options = field.form
+                  ?.get('currency')
+                  ?.valueChanges.pipe(
+                    switchMap((currency) => {
+                      return this.dataService.getBankAccountByCurrency(
+                        currency
+                      );
+                    })
+                  );
               }
             },
           }
@@ -181,14 +223,14 @@ export class InvoicesEditComponent {
             type: 'number',
             label: 'Celkom',
             placeholder: 'Celkom',
-          }
+          },
         },
         {
           key: 'paid',
           type: 'checkbox',
           props: {
             label: 'Zaplatené',
-          }
+          },
         },
         {
           hideExpression: model => model.total < 50,
@@ -204,8 +246,6 @@ export class InvoicesEditComponent {
     console.log(model);
   }
 
-
-
   //ToDo:
   // - Dvojstlpcovy layout ✔️
   // - ked vyberiem menu tak sa vyfiltruje iban podla meny ✔️
@@ -219,7 +259,6 @@ export class InvoicesEditComponent {
   //   - pridat polozku / vymazat polozku
   // - trochu to refaktorovat a presunut to damostatnych tried
   // - presets ✔️
-
 
   // -----------------------------
   // - pridat dalsie polozky

@@ -14,7 +14,7 @@ export interface CustomerFieldConfig extends FormlyFieldConfig<CustomerProps> {
 
 @Component({
   templateUrl: './customer-field-type.component.html',
-  styleUrls: ['./customer-field-type.component.scss']
+  styleUrls: ['./customer-field-type.component.scss'],
 })
 export class CustomerFieldTypeComponent extends FieldType<CustomerFieldConfig> implements OnInit {
 
@@ -127,7 +127,7 @@ export class CustomerFieldTypeComponent extends FieldType<CustomerFieldConfig> i
             props: {
               label: 'Mesto',
               placeholder: 'Mesto',
-            }
+            },
           },
           {
             key: 'state',
@@ -135,7 +135,7 @@ export class CustomerFieldTypeComponent extends FieldType<CustomerFieldConfig> i
             props: {
               label: 'Štát',
               placeholder: 'Štát',
-            }
+            },
           },
           {
             key: 'zip',
@@ -143,10 +143,10 @@ export class CustomerFieldTypeComponent extends FieldType<CustomerFieldConfig> i
             props: {
               label: 'PSČ',
               placeholder: 'PSČ',
-            }
+            },
           },
-        ]
-      }
+        ],
+      },
     ];
   }
 }
