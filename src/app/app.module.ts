@@ -33,6 +33,7 @@ import { DxGridComponent } from './dx-grid/dx-grid.component';
 import { FormlyPresetModule } from '@ngx-formly/core/preset';
 import { FormlySelectModule } from '@ngx-formly/core/select';
 import { registerTypeOfPaymentPreset, TYPE_OF_PAYMENTS } from './typeofpayment.preset';
+import {defaultPlaceholderExtension} from './defaultPlaceholderExtension';
 
 
 @NgModule({
@@ -116,6 +117,12 @@ import { registerTypeOfPaymentPreset, TYPE_OF_PAYMENTS } from './typeofpayment.p
         },
         { name: 'dx-grid', component: DxGridComponent },
       ],
+      extensions: [
+        {
+          name: 'default-placeholder',
+          extension: defaultPlaceholderExtension
+        }
+      ]
     }),
     FormlyPrimeNGModule,
     BrowserAnimationsModule,

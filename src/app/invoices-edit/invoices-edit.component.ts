@@ -210,14 +210,14 @@ export class InvoicesEditComponent {
   // - ked vyberiem menu tak sa vyfiltruje iban podla meny ✔️
   // - cobo partnera
   //   - ked vyberiem partnera tak sa vyplnia jeho udaje ✔️
-  //   - ked vyberiem partnera tak sa nastavi poznamka
+  //   - ked vyberiem partnera tak sa nastavi poznamka ✔️
   // - jednoduche skrivanie / disablovanie ✔️
-  // - Discount
   // - preskumat tie ich extensions
   // - validacie
   // - zoznam poloziek ako grid ✔️
   //   - pridat polozku / vymazat polozku
   // - trochu to refaktorovat a presunut to damostatnych tried
+  // - presets ✔️
 
 
   // -----------------------------
