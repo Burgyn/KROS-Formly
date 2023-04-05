@@ -8,8 +8,7 @@ interface DxGridProps extends FormlyFieldProps {
   columnAutoWidth: boolean;
 }
 
-export interface DxGridFieldConfig extends FormlyFieldConfig<DxGridProps> {
-
+export interface DxGridFieldConfig extends FormlyFieldConfig<DxGridProps> {  
 }
 
 @Component({

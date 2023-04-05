@@ -46,7 +46,7 @@ export class DataService {
         { code: 'TB011', description: 'Matching wooden nightstand with drawer', quantity: 2, price: 30.00, tax: 0.21, total: 72.60, discount: 0.00 },
         { code: 'TB012', description: 'Large sliding-door wardrobe with mirror', quantity: 1, price: 250.00, tax: 0.21, total: 302.50, discount: 0.00 },
         { code: 'TB013', description: 'Six-drawer wooden dresser', quantity: 1, price: 180.00, tax: 0.21, total: 217.80, discount: 0.00 },
-        { code: 'TB014', description: 'Mobile drawer unit on casters', quantity: 1, price: 40.00, tax: 0.21, total: 48.40, discount: 0.00 },     
+        { code: 'TB014', description: 'Mobile drawer unit on casters', quantity: 1, price: 40.00, tax: 0.21, total: 48.40, discount: 0.00 },
       ],
       terms: 'No returns or refunds.',
       notes: 'Thank you for your business.',
@@ -136,7 +136,32 @@ export class DataService {
   }
 
   getBankAccountByCurrency(currency: string) {
-    return of (this.getBankAccounts()
+    return of(this.getBankAccounts()
       .filter(bankAccount => bankAccount.currency === currency))
+  }
+
+  getPartners() {
+    return of([
+      { id: 1, name: 'John Doe', email: 'johndoe1@gmail.com', phone: '+421 123 456 789', address: '1234 Street', city: 'New York', state: 'NY', zip: '10001', bankAccount: 'US1234567890' },
+      { id: 2, name: 'Jane Smith', email: 'janesmith2@gmail.com', phone: '+421 234 567 890', address: '2345 Street', city: 'Los Angeles', state: 'CA', zip: '90001', bankAccount: 'US2345678901' },
+      { id: 3, name: 'Michael Brown', email: 'michaelbrown3@gmail.com', phone: '+421 345 678 901', address: '3456 Street', city: 'Chicago', state: 'IL', zip: '60601', bankAccount: 'US3456789012' },
+      { id: 4, name: 'Emily Johnson', email: 'emilyjohnson4@gmail.com', phone: '+421 456 789 012', address: '4567 Street', city: 'Houston', state: 'TX', zip: '77001', bankAccount: 'US4567890123' },
+      { id: 5, name: 'William Davis', email: 'williamdavis5@gmail.com', phone: '+421 567 890 123', address: '5678 Street', city: 'Philadelphia', state: 'PA', zip: '19019', bankAccount: 'US5678901234' },
+      { id: 6, name: 'Elizabeth Miller', email: 'elizabethmiller6@gmail.com', phone: '+421 678 901 234', address: '6789 Street', city: 'Phoenix', state: 'AZ', zip: '85001', bankAccount: 'US6789012345' },
+      { id: 7, name: 'David Wilson', email: 'davidwilson7@gmail.com', phone: '+421 789 012 345', address: '7890 Street', city: 'San Antonio', state: 'TX', zip: '78201', bankAccount: 'US7890123456' },
+      { id: 8, name: 'Samantha Moore', email: 'samanthamoore8@gmail.com', phone: '+421 890 123 456', address: '8901 Street', city: 'San Diego', state: 'CA', zip: '92101', bankAccount: 'US8901234567' },
+      { id: 9, name: 'James Taylor', email: 'jamestaylor9@gmail.com', phone: '+421 901 234 567', address: '9012 Street', city: 'Dallas', state: 'TX', zip: '75201', bankAccount: 'US9012345678' },
+      { id: 10, name: 'Jessica Anderson', email: 'jessicaanderson10@gmail.com', phone: '+421 012 345 678', address: '1012 Street', city: 'San Jose', state: 'CA', zip: '95101', bankAccount: 'US0123456789' },
+      { id: 21, name: 'Oliver Harris', email: 'oliverharris21@gmail.com', phone: '+421 210 987 654', address: '2109 Street', city: 'Seattle', state: 'WA', zip: '98101', bankAccount: 'US2109876543' },
+      { id: 22, name: 'Ethan Clark', email: 'ethanclark22@gmail.com', phone: '+421 221 098 765', address: '2210 Street', city: 'Denver', state: 'CO', zip: '80201', bankAccount: 'US2210987654' },
+      { id: 23, name: 'Ava Lewis', email: 'avalewis23@gmail.com', phone: '+421 232 109 876', address: '2311 Street', city: 'Boston', state: 'MA', zip: '02101', bankAccount: 'US2321098765' },
+      { id: 24, name: 'Mia Young', email: 'miayoung24@gmail.com', phone: '+421 243 210 987', address: '2412 Street', city: 'Atlanta', state: 'GA', zip: '30301', bankAccount: 'US2432109876' },
+      { id: 25, name: 'Charlotte Hall', email: 'charlottehall25@gmail.com', phone: '+421 254 321 098', address: '2513 Street', city: 'Miami', state: 'FL', zip: '33101', bankAccount: 'US2543210987' },
+      { id: 26, name: 'Amelia Ward', email: 'ameliaward26@gmail.com', phone: '+421 265 432 109', address: '2614 Street', city: 'Raleigh', state: 'NC', zip: '27601', bankAccount: 'US2654321098' },
+      { id: 27, name: 'Harper Turner', email: 'harperturner27@gmail.com', phone: '+421 276 543 210', address: '2715 Street', city: 'Nashville', state: 'TN', zip: '37201', bankAccount: 'US2765432109' },
+      { id: 28, name: 'Evelyn Morris', email: 'evelynmorris28@gmail.com', phone: '+421 287 654 321', address: '2816 Street', city: 'New Orleans', state: 'LA', zip: '70112', bankAccount: 'US2876543210' },
+      { id: 29, name: 'Abigail Carter', email: 'abigailcarter29@gmail.com', phone: '+421 298 765 432', address: '2917 Street', city: 'Indianapolis', state: 'IN', zip: '46201', bankAccount: 'US2987654321' },
+      { id: 30, name: 'Emily Phillips', email: 'emilyphillips30@gmail.com', phone: '+421 309 876 543', address: '3018 Street', city: 'Columbus', state: 'OH', zip: '43085', bankAccount: 'US3098765432' }
+    ]);
   }
 }

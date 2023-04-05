@@ -13,7 +13,6 @@ interface SelectProps extends FormlyFieldProps, FormlyFieldSelectProps {
 export interface FormlySelectFieldConfig extends FormlyFieldConfig<SelectProps> {
   type: 'select' | Type<FormlyFieldSelect>;  
 }
-
 @Component({
   selector: 'app-dx-select',
   template: `
@@ -23,7 +22,8 @@ export interface FormlySelectFieldConfig extends FormlyFieldConfig<SelectProps> 
       [searchEnabled]="props.searchEnabled || false"
       displayExpr="{{props.displayExpr || 'label'}}"
       valueExpr="{{props.valueExpr || 'value'}}"
-      (onChange)="props.change && props.change(field, $event)"></dx-select-box>
+      (onSelectionChanged)="props.change && props.change(field, $event)"
+      ></dx-select-box>
   `,
   styleUrls: ['./dx-select.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush

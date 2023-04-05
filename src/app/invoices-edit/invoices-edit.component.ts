@@ -64,6 +64,7 @@ export class InvoicesEditComponent {
       fieldGroupClassName: 'display-flex',
       fieldGroup: [
         CustomerFieldTypeComponent.createField('customer', 'Zákazník'),
+        //ToDo: definovanie toho ktore fieldy sa maju zobrazit by som definoval cez props.
         CustomerFieldTypeComponent.createField('supplier', 'Dodávateľ', false, [
           {
             key: 'name',
@@ -81,7 +82,7 @@ export class InvoicesEditComponent {
               label: 'Adresa',
             }
           }
-        ]),
+        ], false),
       ]
     },
     {
@@ -115,6 +116,11 @@ export class InvoicesEditComponent {
           props: {
             label: 'Poznámka',
             placeholder: 'Poznámka',
+          },
+          expressions: {
+            'model.notes': (field) => {
+              return 'Fakturujem pre ' + field.model.customer.name;
+            }
           }
         }
       ]
@@ -162,7 +168,7 @@ export class InvoicesEditComponent {
       ]
     },
     {
-      wrappers: ['dx-group'],      
+      wrappers: ['dx-group'],
       props: {
         label: 'Cena',
       },
@@ -204,14 +210,16 @@ export class InvoicesEditComponent {
   // - Dvojstlpcovy layout ✔️
   // - ked vyberiem menu tak sa vyfiltruje iban podla meny ✔️
   // - cobo partnera
-  //   - ked vyberiem partnera tak sa vyplnia jeho udaje
+  //   - ked vyberiem partnera tak sa vyplnia jeho udaje ✔️
+  //   - ked vyberiem partnera tak sa nastavi poznamka
   // - jednoduche skrivanie / disablovanie ✔️
   // - Discount
   // - preskumat tie ich extensions
   // - validacie
-  // - zoznam poloziek ako grid
+  // - zoznam poloziek ako grid ✔️
   //   - pridat polozku / vymazat polozku
   // - trochu to refaktorovat a presunut to damostatnych tried
+  // - ked zmenim menu tak sa zmeni kurz
 
 
   // -----------------------------

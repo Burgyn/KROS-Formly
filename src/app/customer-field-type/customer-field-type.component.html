@@ -1,6 +1,12 @@
 <!-- <app-debug [field]="field" [model]="model"></app-debug> -->
 
-<div *ngFor="let step of field.fieldGroup;">
+<!-- <div *ngFor="let step of field.fieldGroup;">
     <formly-field [field]="step"></formly-field>
-</div>
+</div> -->
 
+<formly-form 
+    [fields]="fields"
+    [model]="model"
+    [form]="formlyGroup"
+    [options]="newOptions">
+</formly-form>
