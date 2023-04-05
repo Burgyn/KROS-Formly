@@ -54,6 +54,7 @@ export class DataService {
       paid: false,
       currency: 'USD',
       bankAccount: 'SK1234567890',
+      typeOfPayment: 'cash',
       discount: {
         allowed: true,
         discount: 10,

@@ -13,10 +13,12 @@ interface SelectProps extends FormlyFieldProps, FormlyFieldSelectProps {
 export interface FormlySelectFieldConfig extends FormlyFieldConfig<SelectProps> {
   type: 'select' | Type<FormlyFieldSelect>;  
 }
+// ToDo: Oni tu pouzivaju formlySelectOptions pipe, [options]="props.options | formlySelectOptions : field | async"
+// ale ja tym ze chcem konfigurovat displayExpr a valueExpr tak to nejde
 @Component({
   selector: 'app-dx-select',
   template: `
-    <dx-select-box [items]="items() | async" 
+    <dx-select-box [items]="(items() | async) ?? []"
       [formControl]="formControl"
       [formlyAttributes]="field"
       [searchEnabled]="props.searchEnabled || false"
@@ -31,6 +33,10 @@ export interface FormlySelectFieldConfig extends FormlyFieldConfig<SelectProps> 
 export class DxSelectComponent extends FieldType<FieldTypeConfig<SelectProps>> {
 
   items(): Observable<any> {
+    if (this.props.options instanceof Array)
+      return new Observable((observer) => {
+        observer.next(this.props.options);
+      });
     return this.props.options as Observable<any>;
   }
 }

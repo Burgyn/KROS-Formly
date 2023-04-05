@@ -13,6 +13,7 @@ export interface FormlyInputFieldConfig extends FormlyFieldConfig<InputProps> {
   template: `
         <dx-text-box 
           *ngIf="props.type !== 'number' && props.type !== 'date'; else numberTmp"
+          [placeholder]="props.placeholder || ''"
           [formControl]="formControl"
           [formlyAttributes]="field">
         </dx-text-box>

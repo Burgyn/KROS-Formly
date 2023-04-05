@@ -110,29 +110,13 @@ export class CustomerFieldTypeComponent extends FieldType<CustomerFieldConfig> i
   public static createDefaultFields() {
     return [
       {
-        key: 'name',
-        type: 'input',
-        props: {
-          label: 'Názov',
-          placeholder: 'Názov',
-          required: true,
-        }
+        type: '#name'
       },
       {
-        key: 'address',
-        type: 'input',
-        props: {
-          label: 'Adresa',
-          placeholder: 'Adresa',
-        }
+        type: '#address',
       },
       {
-        key: 'email',
-        type: 'input',
-        props: {
-          label: 'Email',
-          placeholder: 'Email',
-        }
+        type: '#email',
       },
       {
         fieldGroup: [

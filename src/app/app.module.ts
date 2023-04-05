@@ -1,11 +1,11 @@
-import { NgModule } from '@angular/core';
+import { InjectionToken, NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { FormlyPrimeNGModule } from '@ngx-formly/primeng';
-import { FormlyModule } from '@ngx-formly/core';
+import { FORMLY_CONFIG, FormlyModule } from '@ngx-formly/core';
 import { ToolbarModule } from 'primeng/toolbar';
 import { ButtonModule } from 'primeng/button';
 import { SidebarModule } from 'primeng/sidebar';
@@ -30,6 +30,9 @@ import { DxGroupWrapperComponent } from './dx-group-wrapper/dx-group-wrapper.com
 import { DxSelectComponent } from './dx-select/dx-select.component';
 import { DxColumnLayoutWrapperComponent } from './dx-column-layout-wrapper/dx-column-layout-wrapper.component';
 import { DxGridComponent } from './dx-grid/dx-grid.component';
+import { FormlyPresetModule } from '@ngx-formly/core/preset';
+import { FormlySelectModule } from '@ngx-formly/core/select';
+import { registerTypeOfPaymentPreset, TYPE_OF_PAYMENTS } from './typeofpayment.preset';
 
 
 @NgModule({
@@ -53,7 +56,44 @@ import { DxGridComponent } from './dx-grid/dx-grid.component';
     BrowserModule,
     AppRoutingModule,
     ReactiveFormsModule,
+    FormlyPresetModule,
+    FormlySelectModule,
     FormlyModule.forRoot({
+      presets: [
+        {
+          name: 'name',
+          config: {
+            key: 'name',
+            type: 'input',
+            props: {
+              label: 'Názov',
+              required: true,
+            },
+          },
+        },
+        {
+          name: 'address',
+          config: {
+            key: 'address',
+            type: 'input',
+            props: {
+              label: 'Adresa',
+              placeholder: '(Čislo, Ulica)'
+            },
+          },
+        },
+        {
+          name: 'email',
+          config: {
+            key: 'email',
+            type: 'input',
+            props: {
+              label: 'Email',
+              placeholder: 'Email',
+            },
+          },
+        }
+      ],
       wrappers: [
         { name: 'form-field', component: DxFormFieldComponent },
         { name: 'dx-group', component: DxGroupWrapperComponent },
@@ -91,7 +131,18 @@ import { DxGridComponent } from './dx-grid/dx-grid.component';
     TableModule,
     DevExtremeModule
   ],
-  providers: [],
+  providers: [
+    {
+      provide: TYPE_OF_PAYMENTS,
+      useValue: ['cash', 'transfer', 'card', 'other'],
+    },
+    {
+      provide: FORMLY_CONFIG,
+      useFactory: registerTypeOfPaymentPreset,
+      deps: [TYPE_OF_PAYMENTS],
+      multi: true,
+    },
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

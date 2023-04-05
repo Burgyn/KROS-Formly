@@ -67,19 +67,15 @@ export class InvoicesEditComponent {
         //ToDo: definovanie toho ktore fieldy sa maju zobrazit by som definoval cez props.
         CustomerFieldTypeComponent.createField('supplier', 'Dodávateľ', false, [
           {
-            key: 'name',
-            type: 'input',
+            type: '#name',
             props: {
               disabled: true,
-              label: 'Názov',
             }
           },
           {
-            key: 'address',
-            type: 'input',
+            type: '#address',
             props: {
               disabled: true,
-              label: 'Adresa',
             }
           }
         ], false),
@@ -164,6 +160,9 @@ export class InvoicesEditComponent {
               }
             },
           }
+        },
+        {
+          type: '#typeOfPayment',
         }
       ]
     },
@@ -191,7 +190,7 @@ export class InvoicesEditComponent {
           }
         },
         {
-          hideExpression:  model =>  model.total < 50,
+          hideExpression: model => model.total < 50,
           fieldGroup: [
             DiscountComponent.createField(),
           ]
@@ -219,7 +218,6 @@ export class InvoicesEditComponent {
   // - zoznam poloziek ako grid ✔️
   //   - pridat polozku / vymazat polozku
   // - trochu to refaktorovat a presunut to damostatnych tried
-  // - ked zmenim menu tak sa zmeni kurz
 
 
   // -----------------------------
