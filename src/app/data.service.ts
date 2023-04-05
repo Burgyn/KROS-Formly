@@ -54,6 +54,11 @@ export class DataService {
       paid: false,
       currency: 'USD',
       bankAccount: 'SK1234567890',
+      bankInfo:{
+        name: 'Slovenská sporiteľňa, a.s.',
+        code: 'SK1234567890',
+        currency: 'EUR',
+      },
       typeOfPayment: 'cash',
       discount: {
         allowed: true,

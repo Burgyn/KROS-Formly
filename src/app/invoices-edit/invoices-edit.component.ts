@@ -13,7 +13,7 @@ import { map, of, startWith, switchMap, tap } from 'rxjs';
   styleUrls: ['./invoices-edit.component.scss'],
 })
 export class InvoicesEditComponent {
-  constructor(private dataService: DataService) {}
+  constructor(private dataService: DataService) { }
 
   form = new FormGroup({});
   model = this.dataService.getInvoice(1);
@@ -203,6 +203,28 @@ export class InvoicesEditComponent {
               }
             },
           }
+        },
+        {
+          key: "bankInfo",
+          props: {
+            dependsOn: 'bankAccount',
+          },
+          fieldGroup: [
+            {
+              key: 'name',
+              type: 'input',
+              props: {
+                disabled: true,
+              }
+            },
+            {
+              key: 'code',
+              type: 'input',
+              props: {
+                disabled: true,
+              }
+            }
+          ]
         },
         {
           type: '#typeOfPayment',
