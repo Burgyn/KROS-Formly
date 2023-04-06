@@ -122,28 +122,13 @@ export class CustomerFieldTypeComponent extends FieldType<CustomerFieldConfig> i
       {
         fieldGroup: [
           {
-            key: 'city',
-            type: 'input',
-            props: {
-              label: 'Mesto',
-              placeholder: 'Mesto',
-            },
+            key: 'city'
           },
           {
-            key: 'state',
-            type: 'input',
-            props: {
-              label: 'Štát',
-              placeholder: 'Štát',
-            },
+            key: 'state'
           },
           {
-            key: 'zip',
-            type: 'input',
-            props: {
-              label: 'PSČ',
-              placeholder: 'PSČ',
-            },
+            key: 'zip'
           },
         ],
       },
