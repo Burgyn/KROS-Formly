@@ -36,6 +36,8 @@ import { registerTypeOfPaymentPreset, TYPE_OF_PAYMENTS } from './typeofpayment.p
 import {defaultPlaceholderExtension} from './defaultPlaceholderExtension';
 import { DependentOptionsExtension } from './DependentOptionsExtension';
 import { defaultFieldExtension } from './defaultFieldExtension';
+import { InvoicesEditJsonComponent } from './invoices-edit-json/invoices-edit-json.component';
+import { HttpClientModule } from '@angular/common/http';
 
 
 @NgModule({
@@ -53,7 +55,8 @@ import { defaultFieldExtension } from './defaultFieldExtension';
     DxGroupWrapperComponent,
     DxSelectComponent,
     DxColumnLayoutWrapperComponent,
-    DxGridComponent
+    DxGridComponent,
+    InvoicesEditJsonComponent
   ],
   imports: [
     BrowserModule,
@@ -61,6 +64,7 @@ import { defaultFieldExtension } from './defaultFieldExtension';
     ReactiveFormsModule,
     FormlyPresetModule,
     FormlySelectModule,
+    HttpClientModule,
     FormlyModule.forRoot({
       presets: [
         {

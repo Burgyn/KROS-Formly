@@ -1,0 +1,128 @@
+[
+  {
+    "key": "id",
+    "className": "section-label",
+    "template": "<h2>Faktura 1</h2>"
+  },
+  {
+    "props": {
+      "label": "Základné informácie"
+    },
+    "wrappers": [
+      "dx-group"
+    ],
+    "fieldGroup": [
+      {
+        "key": "number",
+        "type": "input",
+        "props": {
+          "label": "Čislo faktúry",
+          "placeholder": "Čislo faktúry",
+          "required": true
+        }
+      },
+      {
+        "key": "date",
+        "type": "input",
+        "props": {
+          "type": "date",
+          "label": "Dátum",
+          "placeholder": "Dátum",
+          "required": true
+        }
+      },
+      {
+        "key": "dueDate",
+        "type": "input",
+        "props": {
+          "type": "date",
+          "label": "Dátum splatnosti",
+          "placeholder": "Dátum splatnosti",
+          "required": true
+        }
+      },
+      {
+        "key": "currency",
+        "type": "select",
+        "props": {
+          "label": "Mena",
+          "placeholder": "Mena",
+          "required": true,
+          "options": [
+            {
+              "label": "EUR",
+              "value": "EUR"
+            },
+            {
+              "label": "USD",
+              "value": "USD"
+            }
+          ]
+        }
+      },
+      {
+        "key": "note",
+        "type": "textarea",
+        "props": {
+          "label": "Poznámka",
+          "placeholder": "Poznámka",
+          "required": false
+        }
+      }
+    ]
+  },
+  {
+    "key": "items",
+    "type": "dx-grid",
+    "wrappers": [
+      "dx-group"
+    ],
+    "props":{
+      "label": "Položky",
+      "placeholder": "Položky",
+      "header": "Položky",
+      "allowColumnReordering": true,
+      "keyExpr": "code",
+      "required": true,
+      "columns": [
+        {
+          "dataField": "code",
+          "caption": "Kód",
+          "width": 70
+        },
+        {
+          "dataField": "description",
+          "caption": "Názov",
+          "width": 300
+        },
+        {
+          "dataField": "quantity",
+          "caption": "Množstvo",
+          "width": 80
+        },
+        {
+          "dataField": "price",
+          "caption": "Cena",
+          "width": 100,
+          "format": " ##0.00"
+        },
+        {
+          "dataField": "tax",
+          "caption": "DPH",
+          "width": 100
+        },
+        {
+          "dataField": "total",
+          "caption": "Celkom",
+          "width": 100,
+          "format": " ##0.00"
+        },
+        {
+          "dataField": "discount",
+          "caption": "Zľava",
+          "width": 90
+        }
+      ]
+    }
+  }
+]
