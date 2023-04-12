@@ -238,18 +238,10 @@ export class InvoicesEditComponent {
       },
       fieldGroup: [
         {
-          key: 'total',
-          type: 'input',
-          props: {
-            // toto chcem readonly (respektive len text)
-            type: 'number',
-            label: 'Celkom',
-            placeholder: 'Celkom',
-          },
+          key: 'total'
         },
         {
           key: 'paid',
-          type: 'checkbox',
           props: {
             label: 'Zaplatené',
           },
